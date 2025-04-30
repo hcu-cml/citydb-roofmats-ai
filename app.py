@@ -5,6 +5,7 @@ import os
 import sys
 import time
 import traceback
+from datetime import datetime
 
 import psycopg
 from shapely import wkt
@@ -19,11 +20,17 @@ attribute_name = 'PredictedRoofMaterials'
 spatial_ratio = 0.15
 
 # Init logging
+log_file = 'run.log'
+# Check if run.log exists
+if os.path.exists(log_file):
+    # Rename it with a timestamp
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    os.rename(log_file, f'run_{timestamp}.log')
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("run_match15.log"),
+        logging.FileHandler("run.log"),
         logging.StreamHandler(sys.stdout)  # This prints to console too
     ]
 )
