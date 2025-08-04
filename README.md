@@ -29,3 +29,13 @@ Open web client in browser:
 + Buildings (with green potential) in Urban Heat Analysis:
 
   http://localhost:8080/buildings_green_lst
+
+
+## Cite
+
+<pre><code>@misc{arzoumanidis2024roofmatscitydb,
+      title={Object Detection for the Enrichment of Semantic 3D City Models with Roofing Materials},
+      author={Arzoumanidis, Lukas and Nguyen, Son H. and Johannsen, Lara and Rothaut, Filip and Li, Weilian and Dehbi, Youness},
+      year={2025},
+      journal = {ISPRS Ann. Photogramm. Remote Sens. Spatial Inf. Sci.}
+}</code></pre>
