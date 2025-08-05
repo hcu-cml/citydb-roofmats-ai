@@ -1,8 +1,12 @@
-# citydb-roofmats-ai
+# Enrichment of Semantic 3D City Models with Roofing Materials
 
 A tool to enrich semantic 3D city models (CityGML datasets stored in 3DCityDB) with roof materials predicted based on OSM and aerial imagery.
 
 ![Buildings_Highlighted_Big_6.png](images/Buildings_Highlighted_Big_6.png)
+
+### Detecting, integrating and mapping building roof materials into semantic 3D city model
+
+![method_pipeline.pdf](images/method_pipeline.pdf)
 
 ### Docker 
 
@@ -33,9 +37,12 @@ Open web client in browser:
 
 ## Cite
 
-<pre><code>@misc{arzoumanidis2024roofmatscitydb,
+<pre><code>@misc{arzoumanidis2025roofmatscitydb,
       title={Object Detection for the Enrichment of Semantic 3D City Models with Roofing Materials},
       author={Arzoumanidis, Lukas and Nguyen, Son H. and Johannsen, Lara and Rothaut, Filip and Li, Weilian and Dehbi, Youness},
       year={2025},
-      journal = {ISPRS Ann. Photogramm. Remote Sens. Spatial Inf. Sci.}
+      journal = {ISPRS Ann. Photogramm. Remote Sens. Spatial Inf. Sci.},
+      volume = {X-4/W5-2024},
+      pages = {xx--xx},
+      doi = {xxx}
 }</code></pre>
