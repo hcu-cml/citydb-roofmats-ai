@@ -4,9 +4,9 @@ A tool to enrich semantic 3D city models (CityGML datasets stored in 3DCityDB) w
 
 ![Buildings_Highlighted_Big_6.png](images/Buildings_Highlighted_Big_6.png)
 
-### Detecting, integrating and mapping building roof materials into semantic 3D city model
+### Detecting and integrating roof materials into semantic 3D city model
 
-![method_pipeline.pdf](images/method_pipeline.pdf)
+![pipeline.png](images/pipeline.png)
 
 ### Docker 
 
