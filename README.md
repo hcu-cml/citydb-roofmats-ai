@@ -1,14 +1,16 @@
 # Enrichment of Semantic 3D City Models with Roofing Materials
 
-[MSD: A Benchmark Dataset for Floor Plan Generation of Building Complexes]() </br>
-[**Lukas Arzoumanidis**](https://github.com/luarzou)<sup>*</sup>,
+This repository contains the source code accompanying our paper:
+
+[Object Detection for the Enrichment of Semantic 3D City Models with Roofing Materials]() </br>
+[**Lukas Arzoumanidis**](https://github.com/luarzou),
 [**Son H. Nguyen**](https://github.com/Son-HNguyen),
 **Lara Johannsen**,
 **Filip Rothaut**,
 [**Weilian Li**](https://vgewilliam.github.io/),
 [**Youness Dehbi**](https://www.hcu-hamburg.de/en/youness-dehbi), 
 
-A tool to enrich semantic 3D city models (CityGML datasets stored in 3DCityDB) with roof materials predicted based on OSM and aerial imagery.
+Our work presents a novel approach to enrich semantic 3D city models (CityGML datasets stored in 3DCityDB) with roof materials predicted based on OSM data and aerial imagery.
 
 ![Buildings_Highlighted_Big_6.png](images/Buildings_Highlighted_Big_6.png)
 
