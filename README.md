@@ -74,9 +74,9 @@ Open web client in browser:
       author={Arzoumanidis, Lukas and Nguyen, Son H. and Johannsen, Lara and Rothaut, Filip and Li, Weilian and Dehbi, Youness},
       year={2025},
       journal = {ISPRS Ann. Photogramm. Remote Sens. Spatial Inf. Sci.},
-      volume = {X-x/Wx-2025},
-      pages = {xx--xx},
-      doi = {xxx}
+      volume = {},
+      pages = {},
+      doi = {}
 }</code></pre>
 
 ## Troubleshooting
