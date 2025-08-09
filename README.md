@@ -34,7 +34,7 @@ out body;
 out skel qt;
 ```
 
-To focus on the most relevant data, we filtered the material types from OSM to retain only the most frequently occurring ones (tar paper, concrete, metal, glass, and roof tiles), removing rare, ambiguous, misspelled or false entries. We developed a PyGIS script to automatically construct a grid with cells of 100×100 meters, which serves to define both the spatial extent of the roof material annotations from OSM and the corresponding aerial image patches. We imposed a constraint on grid cell selection: only those cells containing at least three distinct rooftop instances, each larger than 10 $\SI{10}{\metre\squared}$, were retained. After that we used the selected grid cells to extract aerial image patches at a map scale of 1:2400. Each patch was cropped to a size of 500×500 pixels, resulting in the final training pairs of aligned image data and roof material labels.
+To focus on the most relevant data, we filtered the material types from OSM to retain only the most frequently occurring ones (tar paper, concrete, metal, glass, and roof tiles), removing rare, ambiguous, misspelled or false entries. We developed a PyGIS script to automatically construct a grid with cells of 100×100 meters, which serves to define both the spatial extent of the roof material annotations from OSM and the corresponding aerial image patches. We imposed a constraint on grid cell selection: only those cells containing at least three distinct rooftop instances, each larger than 10 m$^{2}$, were retained. After that we used the selected grid cells to extract aerial image patches at a map scale of 1:2400. Each patch was cropped to a size of 500×500 pixels, resulting in the final training pairs of aligned image data and roof material labels.
 
 
 
