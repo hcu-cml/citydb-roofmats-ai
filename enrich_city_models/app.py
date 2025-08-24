@@ -20,7 +20,7 @@ attribute_name = 'PredictedRoofMaterials'
 spatial_ratio = 0.15
 
 # Init logging
-log_file = 'run.log'
+log_file = 'logs/run.log'
 # Check if run.log exists
 if os.path.exists(log_file):
     # Rename it with a timestamp
@@ -30,7 +30,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("run.log"),
+        logging.FileHandler("logs/run.log"),
         logging.StreamHandler(sys.stdout)  # This prints to console too
     ]
 )
