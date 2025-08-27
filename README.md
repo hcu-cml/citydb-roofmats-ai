@@ -46,13 +46,14 @@ The visualization of all enriched buildings highlighted by predicted roof materi
 
 ```bash
 # Pull the image
-docker pull sonhng/citydb-roofmats-ai:latest
+docker pull sonhng/citydb-roofmats-ai:linux-latest
 
 # Run the image
-docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:latest
+docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:linux-latest
 ```
 
-**Note**: The Docker images above were created for Apple Silicon M-Processors. Docker images for `amd64` will be added soon.
+**Note**: The Docker image above applies for both AMD64-based Linux OS and ARM64-based Mac OS (Apple Silicon).
+This also works for Windows OS using Docker in WSL2.
 
 Open web client in browser:
 
