@@ -52,6 +52,8 @@ docker pull sonhng/citydb-roofmats-ai:latest
 docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:latest
 ```
 
+**Note**: The Docker images above were created for Apple Silicon M-Processors. Docker images for `amd64` will be added soon.
+
 Open web client in browser:
 
 + Buildings highlighted by 5 different roof materials:
