@@ -5,23 +5,20 @@ import os
 import csv
 import sys
 import matplotlib.pyplot as plt
+import cv2
 
 # import subprocess
 # import sys
 # subprocess.check_call([sys.executable, "-m", "pip3", "install", rasterio])
 import rasterio
 
-if len(sys.argv) < 3:
-    print("Done!")
-    sys.exit(1)
+# if len(sys.argv) < 3:
+#     print("Done!")
+#     sys.exit(1)
+# directory = sys.argv[2]
 
-# docker run --rm -v $(pwd):/data sonhng/citydb-roofmats-ai:latest /data/roofmaterial_prediction/inference_docker/inference_dataset/
-
-directory = sys.argv[2]
-# output_dir = sys.argv[3] if len(sys.argv) > 2 else "/app/output"
 
 # Force CPU for this version of docker container 
-device = "cpu"
 
 
 model = YOLO("/opt/roofmaterial_prediction/src/best.pt")
@@ -41,14 +38,11 @@ model = YOLO("/opt/roofmaterial_prediction/src/best.pt")
 # Make sure output directory exists
 # os.makedirs(output_dir, exist_ok=True)
 
-print(f"Processing all images in: {directory}")
-# print(f"Results will be saved in: {output_dir}")
-
 # The following code performs the prediction of roofing materials on the given inference dataset, 
 # converts the detection bounding boxes from the local image coordinate system into a global coordinate reference system (EPSG:25832).
 # The georeferenced detections are then written as WKT format and exported into a .txt file for each image.
 
-# directory = r"/opt/roofmaterial_prediction/inference_docker/inference_dataset/"
+directory = r"/opt/roofmaterial_prediction/inference_docker/inference_dataset/"
 
 # Iterate over files in directory
 for name in os.listdir(directory):
@@ -59,14 +53,22 @@ for name in os.listdir(directory):
     #get crs und bbox coords from airborne image
     dat = rasterio.open(file)
 
-    # Perform object detection on an image
-    results = model(file, iou=0.9, conf=0.06, device='cuda:0', save_txt=True, save=True)
-    # results[0].show()  # Display results
-
     geo_left=dat.bounds.left
     geo_bottom=dat.bounds.bottom
     geo_right=dat.bounds.right
     geo_top=dat.bounds.top
+
+    img = cv2.imread(file, cv2.IMREAD_UNCHANGED)
+
+    if img.shape[2] == 4:
+        img = img[:, :, :3]
+
+    # Convert BGR to RGB (OpenCV loads images as BGR)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    # Perform object detection on an image
+    results = model(img, iou=0.9, conf=0.06, device='cpu', save_txt=True, save=True)
+    # results[0].show()  # Display results
 
 
     yolo_boxes = results[0].boxes.xyxy.tolist()
@@ -84,8 +86,8 @@ for name in os.listdir(directory):
     # img_width = 500 
     # img_height = 500
     img_width = dat.width 
-    img_height = dat.heigth
-    
+    img_height = dat.height
+
     output_file = "/opt/roofmaterial_prediction/inference_docker/results/inference_bboxes_wkt/" + name_wo_ex + ".txt"
     # output_file = output_dir + name_wo_ex + ".txt"
     with open(output_file, 'w') as f:
