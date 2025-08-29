@@ -12,11 +12,11 @@ This repository contains the source code accompanying our paper:
 
 Our work presents a novel approach to enrich semantic 3D city models (CityGML datasets stored in 3DCityDB) with roof materials predicted based on OSM data and aerial imagery.
 
-![Buildings_Highlighted_Big_6.png](images/Buildings_Highlighted_Big_6.png)
+![Buildings_Highlighted_Big_6.png](repo_images/Buildings_Highlighted_Big_6.png)
 
 ### Detecting and integrating roof materials into semantic 3D city model
 
-![pipeline.png](images/pipeline.png)
+![pipeline.png](repo_images/pipeline.png)
 
 To generate annotated training data containing roof material in-
 formation, we utilized OSM data. To ensure coverage of all com-
