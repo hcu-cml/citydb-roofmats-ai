@@ -64,6 +64,15 @@ docker pull sonhng/citydb-roofmats-ai:windows-latest
 docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:windows-latest
 ```
 
+Run inference on custom areas: add aerial images to `/roofmaterial_prediction/inference_docker/inference_dataset/` and rebuild the container:
+
+```bash
+docker build -t sonhng/citydb-roofmats-ai:latest .
+
+# Run the image
+docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:latest
+```
+
 Open web client in browser:
 
 + Buildings highlighted by 5 different roof materials:
