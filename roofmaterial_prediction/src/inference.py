@@ -1,13 +1,31 @@
 from ultralytics import YOLO
-import rasterio
 import torch
 import numpy as np
 import os
 import csv
+import sys
 import matplotlib.pyplot as plt
 
+# import subprocess
+# import sys
+# subprocess.check_call([sys.executable, "-m", "pip3", "install", rasterio])
+import rasterio
 
-model = YOLO("best.pt")
+if len(sys.argv) < 3:
+    print("Done!")
+    sys.exit(1)
+
+# docker run --rm -v $(pwd):/data sonhng/citydb-roofmats-ai:latest /data/roofmaterial_prediction/inference_docker/inference_dataset/
+
+directory = sys.argv[2]
+# output_dir = sys.argv[3] if len(sys.argv) > 2 else "/app/output"
+
+# Force CPU for this version of docker container 
+device = "cpu"
+
+
+model = YOLO("/opt/roofmaterial_prediction/src/best.pt")
+#/opt/roofmaterial_prediction/src/
 
 # #Train the model on the COCO8 dataset for 100 epochs
 # train_results = model.train(
@@ -20,13 +38,17 @@ model = YOLO("best.pt")
 # #Evaluate the model's performance on the validation set
 # metrics = model.val(data="/home/luarzou/Downloads/roofmaterial/yolo/roofmaterial_force_test.yaml", device="cuda", save_json=True, plots=True, save_conf=True)
 
+# Make sure output directory exists
+# os.makedirs(output_dir, exist_ok=True)
 
+print(f"Processing all images in: {directory}")
+# print(f"Results will be saved in: {output_dir}")
 
 # The following code performs the prediction of roofing materials on the given inference dataset, 
 # converts the detection bounding boxes from the local image coordinate system into a global coordinate reference system (EPSG:25832).
 # The georeferenced detections are then written as WKT format and exported into a .txt file for each image.
 
-directory = r"./inference_dataset"
+# directory = r"/opt/roofmaterial_prediction/inference_docker/inference_dataset/"
 
 # Iterate over files in directory
 for name in os.listdir(directory):
@@ -55,13 +77,17 @@ for name in os.listdir(directory):
         yolo_boxes[counter].insert(0,cls_val)
         counter = counter + 1
 
+    # 20cm gsd
     x_res = 0.2
     y_res = 0.2
 
-    img_width = 500 
-    img_height = 500
-
-    output_file = "./results/inference_bboxes_wkt" + name_wo_ex + ".txt"
+    # img_width = 500 
+    # img_height = 500
+    img_width = dat.width 
+    img_height = dat.heigth
+    
+    output_file = "/opt/roofmaterial_prediction/inference_docker/results/inference_bboxes_wkt/" + name_wo_ex + ".txt"
+    # output_file = output_dir + name_wo_ex + ".txt"
     with open(output_file, 'w') as f:
         for box in yolo_boxes:
             cls, x_min_px, y_min_px, x_max_px, y_max_px = box

@@ -9,9 +9,12 @@ FROM ultralytics/ultralytics:latest-python
 # CMD ["/bin/bash"]
 
 # Copy model configuration files and test images
-COPY roofmaterial_prediction/inference_examples/ /opt/inference_examples
+COPY roofmaterial_prediction/ /opt/roofmaterial_prediction
 
+RUN pip3 install rasterio
 
+# Default command: runs the script (can be overridden)
+ENTRYPOINT ["python3", "/opt/roofmaterial_prediction/src/inference.py"]
 
 # Install packages
 RUN apt-get update && \
