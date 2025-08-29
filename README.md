@@ -21,7 +21,7 @@ Our work presents a novel approach to enrich semantic 3D city models (CityGML da
 To generate annotated training data containing roof material in-
 formation, we utilized OSM data. To ensure coverage of all com-
 monly found materials in Germany, we queried the complete
-OSM dataset for the Germany using the Overpass API: 
+OSM dataset for Germany using the Overpass API: 
 
 ```xml
 area[name="Deutschland"]->.searchArea;

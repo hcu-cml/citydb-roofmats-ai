@@ -2,6 +2,17 @@ FROM debian:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Build from Ultralytics Python image
+FROM ultralytics/ultralytics:latest-python
+
+# Set default command to bash
+# CMD ["/bin/bash"]
+
+# Copy model configuration files and test images
+COPY roofmaterial_prediction/inference_examples/ /opt/inference_examples
+
+
+
 # Install packages
 RUN apt-get update && \
     apt-get install -y apache2 git python3 python3-pip && \
@@ -10,6 +21,10 @@ RUN apt-get update && \
 
 # Host name
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Enable .htaccess Overrides for Apache
+RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+RUN a2enmod rewrite
 
 # Copy visualization files
 COPY 3dcitydb_vis/3dcitydb_vis_export /var/www/html/3dcitydb_vis_export
@@ -21,7 +36,7 @@ RUN git clone https://github.com/3dcitydb/3dcitydb-web-map /var/www/html/3dcityd
 RUN chown -R www-data:www-data /var/www/html/
 
 # Enable .htaccess Overrides for Apache
-RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+#RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 #RUN a2enmod rewrite
 
 # Copy .htaccess file into Apache root
