@@ -64,9 +64,6 @@ docker pull sonhng/citydb-roofmats-ai:windows-latest
 docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:windows-latest
 ```
 
-**Note**: The Docker image above applies for both AMD64-based Linux OS and ARM64-based Mac OS (Apple Silicon).
-This also works for Windows OS using Docker in WSL2.
-
 Open web client in browser:
 
 + Buildings highlighted by 5 different roof materials:
