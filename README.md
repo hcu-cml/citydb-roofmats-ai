@@ -45,12 +45,27 @@ The model employed in our work is YOLOv11-l, as provided in the official Ultraly
 The visualization of all enriched buildings highlighted by predicted roof materials can be shown using Docker:
 
 ```bash
-# Pull the image
-docker pull sonhng/citydb-roofmats-ai:latest
+# For Linux, Mac (incl. Apple Silicon) and Windows WSL2
+
+# Pull the image 
+docker pull sonhng/citydb-roofmats-ai:linux-latest
 
 # Run the image
-docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:latest
+docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:linux-latest
+
+# -----
+
+# For Windows
+
+# Pull the image
+docker pull sonhng/citydb-roofmats-ai:windows-latest
+
+# Run the image
+docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:windows-latest
 ```
+
+**Note**: The Docker image above applies for both AMD64-based Linux OS and ARM64-based Mac OS (Apple Silicon).
+This also works for Windows OS using Docker in WSL2.
 
 Open web client in browser:
 

@@ -55,6 +55,7 @@ EXPOSE 80 5000
 
 # Copy start script and make executable
 COPY docker_data/start_wmts_server.sh /opt/start_wmts_server.sh
-RUN chmod +x /opt/start_wmts_server.sh
+# Run this to avoid CRLF problem while building in Windows; Linux and Mac do not have this problem
+RUN sed -i 's/\r$//' /opt/start_wmts_server.sh && chmod +x /opt/start_wmts_server.sh
 
 CMD ["/opt/start_wmts_server.sh"]
