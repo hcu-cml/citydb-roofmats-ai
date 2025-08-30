@@ -12,11 +12,11 @@ This repository contains the source code accompanying our paper:
 
 Our work presents a novel approach to enrich semantic 3D city models (CityGML datasets stored in 3DCityDB) with roof materials predicted based on OSM data and aerial imagery.
 
-![Buildings_Highlighted_Big_6.png](images/Buildings_Highlighted_Big_6.png)
+![Buildings_Highlighted_Big_6.png](repo_images/Buildings_Highlighted_Big_6.png)
 
 ### Detecting and integrating roof materials into semantic 3D city model
 
-![pipeline.png](images/pipeline.png)
+![pipeline.png](repo_images/pipeline.png)
 
 To generate annotated training data containing roof material in-
 formation, we utilized OSM data. To ensure coverage of all com-
@@ -62,6 +62,18 @@ docker pull sonhng/citydb-roofmats-ai:windows-latest
 
 # Run the image
 docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:windows-latest
+```
+
+Run inference on custom areas: Add aerial images to `roofmaterial_prediction/inference_docker/inference_dataset/` and rebuild the container:
+
+```bash
+# Rebuild
+docker build -t sonhng/citydb-roofmats-ai:linux-latest .
+# OR docker build -t sonhng/citydb-roofmats-ai:windows-latest .
+
+# Run the image
+docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:linux-latest
+# OR docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:windows-latest
 ```
 
 Open web client in browser:
