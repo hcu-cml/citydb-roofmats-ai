@@ -64,13 +64,16 @@ docker pull sonhng/citydb-roofmats-ai:windows-latest
 docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:windows-latest
 ```
 
-Run inference on custom areas: add aerial images to `/roofmaterial_prediction/inference_docker/inference_dataset/` and rebuild the container:
+Run inference on custom areas: Add aerial images to `roofmaterial_prediction/inference_docker/inference_dataset/` and rebuild the container:
 
 ```bash
-docker build -t sonhng/citydb-roofmats-ai:latest .
+# Rebuild
+docker build -t sonhng/citydb-roofmats-ai:linux-latest .
+# OR docker build -t sonhng/citydb-roofmats-ai:windows-latest .
 
 # Run the image
-docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:latest
+docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:linux-latest
+# OR docker run -it -p 8080:80 -p 5000:5000 sonhng/citydb-roofmats-ai:windows-latest
 ```
 
 Open web client in browser:
