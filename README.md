@@ -101,7 +101,6 @@ VOLUME = {X-4/W6-2025},
 YEAR = {2025},
 PAGES = {9--16},
 DOI = {10.5194/isprs-annals-X-4-W6-2025-9-2025}
-}
 }</code></pre>
 
 ## Troubleshooting
