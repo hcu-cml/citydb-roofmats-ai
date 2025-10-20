@@ -6,34 +6,13 @@ import csv
 import sys
 import matplotlib.pyplot as plt
 import cv2
-
-# import subprocess
-# import sys
-# subprocess.check_call([sys.executable, "-m", "pip3", "install", rasterio])
 import rasterio
-
-# if len(sys.argv) < 3:
-#     print("Done!")
-#     sys.exit(1)
-# directory = sys.argv[2]
-
-
-# Force CPU for this version of docker container 
 
 
 model = YOLO("/opt/roofmaterial_prediction/src/best.pt")
-#/opt/roofmaterial_prediction/src/
 
-# #Train the model on the COCO8 dataset for 100 epochs
-# train_results = model.train(
-#     data="/home/luarzou/Downloads/roofmaterial/yolo/roofmaterial.yaml",  # Path to dataset configuration file
-#     epochs=100,  # Number of training epochs
-#     imgsz=500,  # Image size for training
-#     device="cuda",  # Device to run on (e.g., 'cpu', 0, [0,1,2,3])
-# )
-
-# #Evaluate the model's performance on the validation set
-# metrics = model.val(data="/home/luarzou/Downloads/roofmaterial/yolo/roofmaterial_force_test.yaml", device="cuda", save_json=True, plots=True, save_conf=True)
+# #Evaluate the model's performance on the test set
+metrics = model.val(data="/roofmaterial_force_test.yaml", device="cuda", save_json=True, plots=True, save_conf=True)
 
 # Make sure output directory exists
 # os.makedirs(output_dir, exist_ok=True)
@@ -42,7 +21,7 @@ model = YOLO("/opt/roofmaterial_prediction/src/best.pt")
 # converts the detection bounding boxes from the local image coordinate system into a global coordinate reference system (EPSG:25832).
 # The georeferenced detections are then written as WKT format and exported into a .txt file for each image.
 
-directory = r"/opt/roofmaterial_prediction/inference_docker/inference_dataset/"
+directory = r"./inference_dataset"
 
 # Iterate over files in directory
 for name in os.listdir(directory):
