@@ -7,18 +7,18 @@ import csv
 import matplotlib.pyplot as plt
 
 
-model = YOLO("/home/luarzou/Downloads/roofmaterial/yolo/runs/train4_trainings_ergebnisse_valDatensatz/weights/best.pt")
+model = YOLO("yolo11l.pt")
 
-# #Train the model on the COCO8 dataset for 100 epochs
-# train_results = model.train(
-#     data="/home/luarzou/Downloads/roofmaterial/yolo/roofmaterial.yaml",  # Path to dataset configuration file
-#     epochs=100,  # Number of training epochs
-#     imgsz=500,  # Image size for training
-#     device="cuda",  # Device to run on (e.g., 'cpu', 0, [0,1,2,3])
-# )
+#Train the model on the COCO8 dataset for 100 epochs
+train_results = model.train(
+     data="/roofmaterial.yaml",  # Path to dataset configuration file
+     epochs=100,  # Number of training epochs
+     imgsz=500,  # Image size for training
+     device="cuda",  # Device to run on (e.g., 'cpu', 0, [0,1,2,3])
+ )
 
 # #Evaluate the model's performance on the validation set
-metrics = model.val(data="/home/luarzou/Downloads/roofmaterial/yolo/roofmaterial_force_test.yaml", device="cuda", save_json=True, plots=True, save_conf=True)
+# metrics = model.val(data="roofmaterial_force_test.yaml", device="cuda", save_json=True, plots=True, save_conf=True)
 
 
 
