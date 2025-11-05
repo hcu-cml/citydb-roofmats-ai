@@ -93,14 +93,14 @@ Open web client in browser:
 
 ## Cite
 
-<pre><code>@misc{arzoumanidis2025roofmatscitydb,
-      title={Object Detection for the Enrichment of Semantic 3D City Models with Roofing Materials},
-      author={Arzoumanidis, Lukas and Nguyen, Son H. and Johannsen, Lara and Rothaut, Filip and Li, Weilian and Dehbi, Youness},
-      year={2025},
-      journal = {ISPRS Ann. Photogramm. Remote Sens. Spatial Inf. Sci.},
-      volume = {},
-      pages = {},
-      doi = {}
+<pre><code>@Article{isprs-annals-X-4-W6-2025-9-2025,
+AUTHOR = {Arzoumanidis, L. and Nguyen, S. H. and Johannsen, L. and Rothaut, F. and Li, W. and Dehbi, Y.},
+TITLE = {Object Detection for the Enrichment of Semantic 3D City Models with Roofing Materials},
+JOURNAL = {ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences},
+VOLUME = {X-4/W6-2025},
+YEAR = {2025},
+PAGES = {9--16},
+DOI = {10.5194/isprs-annals-X-4-W6-2025-9-2025}
 }</code></pre>
 
 ## Troubleshooting

@@ -1,8 +1,23 @@
-FROM ultralytics/ultralytics:latest-python
+FROM debian:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install system dependencies
+# Build from Ultralytics Python image
+#FROM ultralytics/ultralytics:latest-python
+
+# Set default command to bash
+#CMD ["/bin/bash"]
+
+# Copy model configuration files and test images
+#COPY roofmaterial_prediction/ /opt/roofmaterial_prediction
+
+#RUN pip3 install rasterio
+#RUN pip3 install opencv-python
+
+
+
+
+# Install packages
 RUN apt-get update && \
     apt-get install -y apache2 git python3 python3-pip && \
     apt-get clean && \
