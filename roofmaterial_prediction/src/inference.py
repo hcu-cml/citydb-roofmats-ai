@@ -9,23 +9,26 @@ import cv2
 import rasterio
 
 
+# Use GPU if available, otherwise fall back to CPU
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
 model = YOLO("/opt/roofmaterial_prediction/src/best.pt")
 
 # #Evaluate the model's performance on the test set
-metrics = model.val(data="/roofmaterial_force_test.yaml", device="cuda", save_json=True, plots=True, save_conf=True)
+# metrics = model.val(data="/roofmaterial_force_test.yaml", device="cuda", save_json=True, plots=True, save_conf=True)
 
 # Make sure output directory exists
-# os.makedirs(output_dir, exist_ok=True)
+os.makedirs("/opt/roofmaterial_prediction/inference_docker/results/inference_bboxes_wkt", exist_ok=True)
 
 # The following code performs the prediction of roofing materials on the given inference dataset, 
 # converts the detection bounding boxes from the local image coordinate system into a global coordinate reference system (EPSG:25832).
 # The georeferenced detections are then written as WKT format and exported into a .txt file for each image.
 
-directory = r"./inference_dataset"
+directory = r"/opt/roofmaterial_prediction/inference_docker/inference_dataset"
 
 # Iterate over files in directory
 for name in os.listdir(directory):
-    file = directory + name
+    file = os.path.join(directory, name)
     name_wo_ex = os.path.splitext(name)[0]
 
 
@@ -46,7 +49,7 @@ for name in os.listdir(directory):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     # Perform object detection on an image
-    results = model(img, iou=0.9, conf=0.06, device='cpu', save_txt=True, save=True)
+    results = model(img, iou=0.9, conf=0.06, device=device, save_txt=True, save=True)
     # results[0].show()  # Display results
 
 

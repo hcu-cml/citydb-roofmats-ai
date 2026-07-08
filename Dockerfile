@@ -19,14 +19,18 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install packages
 RUN apt-get update && \
-    apt-get install -y apache2 git python3 python3-pip && \
+    apt-get install -y apache2 git python3 python3-venv libgl1 libglib2.0-0 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Virtual environment
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 # Install Python dependencies
 COPY urban_heat_island/requirements.txt /opt/requirements.txt
-RUN pip3 install --no-cache-dir rasterio opencv-python && \
-    pip3 install --no-cache-dir -r /opt/requirements.txt
+RUN pip install --no-cache-dir -r /opt/requirements.txt
 
 # Apache setup
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
@@ -55,5 +59,5 @@ RUN chmod +x /opt/start_wmts_server.sh
 EXPOSE 80 5000
 
 # CMD: run inference once, then start server
-CMD python3 /opt/roofmaterial_prediction/src/inference.py device=cpu && \
+CMD python3 /opt/roofmaterial_prediction/src/inference.py && \
     /opt/start_wmts_server.sh
